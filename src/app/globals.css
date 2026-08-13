@@ -1,0 +1,333 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== BASE RESET ========== */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none;
+  }
+
+  body {
+    @apply bg-offwhite text-primary;
+    font-family: "EB Garamond", Georgia, serif;
+  }
+
+  ::selection {
+    @apply bg-navy text-offwhite;
+  }
+
+  /* Focus-visible: visible keyboard outlines on all interactive elements */
+  :focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
+  }
+
+  /* Remove default focus ring (mouse clicks) */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ========== MARQUEE ANIMATION ========== */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ========== SCROLLBAR HIDE (for mobile carousel) ========== */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ========== CUSTOM FONT CLASSES ========== */
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 500;
+  }
+
+  .font-ui {
+    font-family: "Cormorant", Georgia, serif;
+    font-weight: 500;
+    font-variant: small-caps;
+  }
+
+  .font-body {
+    font-family: "EB Garamond", Georgia, serif;
+    font-weight: 400;
+  }
+}
+
+/* ========== NAV LINK UNDERLINE ANIMATION ========== */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #221D18;
+  transition: width 200ms ease-out;
+}
+
+/* Only animate underline on hover for pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover::after {
+    width: 100%;
+  }
+}
+
+/* Active/current page — underline always present */
+.nav-link--active::after {
+  width: 100%;
+}
+
+/* ========== WOOD GRAIN TEXTURE ========== */
+.wood-grain-bg {
+  position: relative;
+}
+
+.wood-grain-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgba(120, 80, 40, 0.3) 8px,
+      rgba(120, 80, 40, 0.3) 9px
+    ),
+    repeating-linear-gradient(
+      87deg,
+      transparent,
+      transparent 20px,
+      rgba(100, 60, 30, 0.2) 20px,
+      rgba(100, 60, 30, 0.2) 21px
+    ),
+    linear-gradient(
+      180deg,
+      rgba(140, 100, 60, 0.15) 0%,
+      rgba(100, 70, 40, 0.1) 50%,
+      rgba(140, 100, 60, 0.15) 100%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wood-grain-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== BUTTON ACTIVE STATES ========== */
+/* Primary buttons: scale down on click */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Touch: buttons scale on tap */
+@media (hover: none) {
+  .btn-primary:active {
+    transform: scale(0.97);
+    transition: transform 100ms ease;
+  }
+}
+
+/* ========== CART BADGE PULSE ========== */
+@keyframes badge-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.cart-badge-pulse {
+  animation: badge-pulse 300ms ease-in-out;
+}
+
+/* ========== SIZE/FABRIC SELECTOR OOS STRIKETHROUGH ========== */
+.oos-strike {
+  position: relative;
+  opacity: 0.4;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.oos-strike::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 141%;
+  height: 1px;
+  background-color: #221D18;
+  transform-origin: top left;
+  transform: rotate(45deg);
+}
+
+/* ========== PRODUCT CARD HOVER STATES ========== */
+@media (hover: hover) and (pointer: fine) {
+  .product-card-wrapper {
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .product-card-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .product-card-image-primary,
+  .product-card-image-secondary {
+    transition: opacity 400ms ease, transform 400ms ease;
+  }
+
+  .product-card-wrapper:hover .product-card-image-primary {
+    opacity: 0;
+  }
+
+  .product-card-wrapper:hover .product-card-image-secondary {
+    opacity: 1;
+  }
+
+  .product-card-wrapper:hover .product-card-image-primary,
+  .product-card-wrapper:hover .product-card-image-secondary {
+    transform: scale(1.04);
+  }
+}
+
+/* Touch: brief lift on tap */
+@media (hover: none) {
+  .product-card-wrapper:active {
+    transform: translateY(-2px);
+    transition: transform 100ms ease;
+  }
+}
+
+/* ========== SOCIAL ICON HOVER ========== */
+@media (hover: hover) and (pointer: fine) {
+  .social-icon {
+    opacity: 0.6;
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+
+  .social-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* ========== CUSTOM CURSOR ========== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #1B2A4A;
+  border-radius: 50% !important;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 200ms ease, width 200ms ease, height 200ms ease;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.custom-cursor--interactive {
+  transform: scale(2.5);
+}
+
+.custom-cursor--drag {
+  width: 60px;
+  height: 60px;
+  background: rgba(27, 42, 74, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== 360 VIEWER PROGRESS BAR ========== */
+@keyframes spin-progress-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.spin-progress-pulse {
+  animation: spin-progress-pulse 1.5s ease-in-out infinite;
+}
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+
+  html {
+    cursor: auto;
+  }
+}
+
+/* ========== LIGHTBOX ========== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+/* ========== SKELETON LOADER ========== */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #E8DFD2 25%,
+    #F0E9DC 50%,
+    #E8DFD2 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
