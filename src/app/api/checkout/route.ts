@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
     // Dynamic import to avoid errors when stripe isn't installed yet
     const Stripe = (await import("stripe")).default;
-    const stripe = new Stripe(stripeKey, { apiVersion: "2024-12-18.acacia" });
+    const stripe = new Stripe(stripeKey, { apiVersion: "2025-02-24.acacia" });
 
     const lineItems = items.map(
       (item: {
