@@ -56,7 +56,7 @@ export default function HomePage() {
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
-              className="transition-transform duration-200 group-hover:translate-x-1"
+              className="transition-transform duration-200 group-hover:translate-x-[4px]"
             >
               <path d="M3 8H13M9 4L13 8L9 12" />
             </svg>

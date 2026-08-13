@@ -19,7 +19,13 @@ export const metadata: Metadata = {
     siteName: "Ashworth & Grey",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ashworth & Grey — Bespoke Tailoring",
+    description:
+      "Garments shaped by hand, finished by eye. Each piece crafted from the world's finest cloths.",
   },
 };
 

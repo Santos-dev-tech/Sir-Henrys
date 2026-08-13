@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/lib/siteConfig";
+import ScrollReveal from "./ScrollReveal";
 
 function InstagramIcon() {
   return (
@@ -66,12 +67,14 @@ export default function Footer() {
       <div className="wood-grain-bg bg-offwhite">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-16 pb-12">
           {/* Main headline */}
-          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl italic text-center text-navy mb-4">
-            {siteConfig.footerHype}
-          </h2>
-          <p className="font-body text-[15px] text-primary/60 text-center max-w-lg mx-auto mb-10 leading-relaxed">
-            {siteConfig.footerSubheading}
-          </p>
+          <ScrollReveal>
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl italic text-center text-navy mb-4">
+              {siteConfig.footerHype}
+            </h2>
+            <p className="font-body text-[15px] text-primary/60 text-center max-w-lg mx-auto mb-10 leading-relaxed">
+              {siteConfig.footerSubheading}
+            </p>
+          </ScrollReveal>
 
           {/* Email capture + social row */}
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 mb-16">

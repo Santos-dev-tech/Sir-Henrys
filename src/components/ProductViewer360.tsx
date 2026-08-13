@@ -200,6 +200,7 @@ export default function ProductViewer360({
     <div
       ref={containerRef}
       className="relative w-full bg-offwhite overflow-hidden select-none"
+      data-viewer360
       style={{
         aspectRatio: "3 / 4",
         cursor: isDragging ? "grabbing" : "grab",

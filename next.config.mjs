@@ -2,7 +2,7 @@
 const nextConfig = {
   images: {
     remotePatterns: [],
-    unoptimized: false,
+    unoptimized: true,
   },
 };
 
